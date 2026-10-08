@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker</title>
+    <style>
+        body {
+            background-color: #1f1f1f;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        #mainButton {
+            position: absolute;
+            left: 25px;
+            top: 25px;
+            width: 250px;
+            height: 250px;
+            color: white;
+            background-color: #2f2f2f;
+            border: 1px solid white;
+            border-radius: 10px;
+            transition: all 0.25s ease-in-out;
+        }
+
+        #mainButton:hover {
+            transform: scale(1.1);
+        }
+
+        #scoreText {
+            position: absolute;
+            top: 250px;
+            font-size: 50px;
+            color: white;
+        }
+
+        #upgradeBox {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 98vh;
+            width: 35vw;
+            background-color: #2f2f2f;
+            text-align: center;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            overflow: auto;
+        }
+
+        .upgrades {
+            width: 95%;
+            height: 10%;
+            background-color: #1f1f1f;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .infoBox {
+            position: absolute;
+            top: 350px;
+            left: 0;
+            text-align: left;
+            width: 750px;
+            height: 100px;
+            background-color: #1f1f1f;
+            padding: 10px;
+        }
+
+        .infoBox > p {
+            font-size: 25px;
+            color: white;
+        }
+
+        #achievementsButton {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: white;
+            background-color: #2f2f2f;
+            border: 1px solid white;
+            width: 250px;
+            height: 75px;
+            border-radius: 10px;
+        }
+
+        #achievementsMenu {
+            width: 90vw;
+            height: 90vh;
+            background-color: #2f2f2f;
+            position: absolute;
+            left: 5vw;
+            top: 5vh;
+            z-index: 9999;
+            border: 1px solid white;
+            text-align: center;
+            display: none;
+            overflow-y: auto;
+        }
+
+        #achievementsMenu > div {
+            background-color: #1f1f1f;
+            border: 1px solid white;
+        }
+
+        #achievementsMenu > div > h1, p {
+            color: white;
+        }
+    </style>
+    <script>
+        score = 0
+        scorePerClick = 1
+        scorePerSecond = 0
+
+        spc1Cost = 15
+        sps1Cost = 30
+        spc2Cost = 100
+        sps2Cost = 250
+        spc3Cost = 1000
+        sps3Cost = 2500
+        spc4Cost = 5000
+        sps4Cost = 10000
+        spc5Cost = 50000
+        sps5Cost = 100000
+        spc6Cost = 500000
+        sps6Cost = 1000000
+
+        spc1Amount = 1
+        sps1Amount = 1
+        spc2Amount = 5
+        sps2Amount = 5
+        spc3Amount = 25
+        sps3Amount = 25
+        spc4Amount = 100
+        sps4Amount = 100
+        spc5Amount = 500
+        sps5Amount = 500
+        spc6Amount = 2500
+        sps6Amount = 2500
+
+        clickCount = 0
+
+        amateurClickerCompletion = false
+        proClickerCompletion = false
+        masterClickerCompletion = false
+        smallClickFactoryCompletion = false
+        largeClickFactoryCompletion = false
+        hugeClickFactoryCompletion = false
+        patienceIsKeyCompletion = false
+        scoreHackerCompletion = false
+
+        achievementScreenActive = false
+
+        function loadStartingInfo() {
+            document.getElementById('spcUpgrade1Amount').innerHTML = spc1Amount
+            document.getElementById('spsUpgrade1Amount').innerHTML = sps1Amount
+            document.getElementById('spcUpgrade2Amount').innerHTML = spc2Amount
+            document.getElementById('spsUpgrade2Amount').innerHTML = sps2Amount
+            document.getElementById('spcUpgrade3Amount').innerHTML = spc3Amount
+            document.getElementById('spsUpgrade3Amount').innerHTML = sps3Amount
+            document.getElementById('spcUpgrade4Amount').innerHTML = spc4Amount
+            document.getElementById('spsUpgrade4Amount').innerHTML = sps4Amount
+            document.getElementById('spcUpgrade5Amount').innerHTML = spc5Amount
+            document.getElementById('spsUpgrade5Amount').innerHTML = sps5Amount
+            document.getElementById('spcUpgrade6Amount').innerHTML = spc6Amount
+            document.getElementById('spsUpgrade6Amount').innerHTML = sps6Amount
+            document.getElementById('spcUpgrade1Cost').innerHTML = spc1Cost
+            document.getElementById('spsUpgrade1Cost').innerHTML = sps1Cost
+            document.getElementById('spcUpgrade2Cost').innerHTML = spc2Cost
+            document.getElementById('spsUpgrade2Cost').innerHTML = sps2Cost
+            document.getElementById('spcUpgrade3Cost').innerHTML = spc3Cost
+            document.getElementById('spsUpgrade3Cost').innerHTML = sps3Cost
+            document.getElementById('spcUpgrade4Cost').innerHTML = spc4Cost
+            document.getElementById('spsUpgrade4Cost').innerHTML = sps4Cost
+            document.getElementById('spcUpgrade5Cost').innerHTML = spc5Cost
+            document.getElementById('spsUpgrade5Cost').innerHTML = sps5Cost
+            document.getElementById('spcUpgrade6Cost').innerHTML = spc6Cost
+            document.getElementById('spsUpgrade6Cost').innerHTML = sps6Cost
+            document.getElementById('amateurClickerCompletion').innerHTML = "Not Completed"
+            document.getElementById('proClickerCompletion').innerHTML = "Not Completed"
+            document.getElementById('masterClickerCompletion').innerHTML = "Not Completed"
+            document.getElementById('smallClickFactoryCompletion').innerHTML = "Not Completed"
+            document.getElementById('largeClickFactoryCompletion').innerHTML = "Not Completed"
+            document.getElementById('hugeClickFactoryCompletion').innerHTML = "Not Completed"
+            document.getElementById('patienceIsKeyCompletion').innerHTML = "Not Completed"
+            document.getElementById('scoreHackerCompletion').innerHTML = "Not Completed"
+        }
+
+        function addToScore() {
+            clickCount += 1
+            score += scorePerClick
+            document.getElementById('score').innerHTML = Math.floor(score)
+        }
+
+        function upgradeScorePerClick1() {
+            if (score >= spc1Cost) {
+                score -= spc1Cost
+                scorePerClick += spc1Amount
+                spc1Cost = Math.round(spc1Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spcUpgrade1Cost').innerHTML = spc1Cost
+                document.getElementById('spcInfoText').innerHTML = scorePerClick
+            }
+        }
+
+        function upgradeScorePerSecond1() {
+            if (score >= sps1Cost) {
+                score -= sps1Cost
+                scorePerSecond += sps1Amount
+                sps1Cost = Math.round(sps1Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spsUpgrade1Cost').innerHTML = sps1Cost
+                document.getElementById('spsInfoText').innerHTML = scorePerSecond
+            }
+        }
+
+        function upgradeScorePerClick2() {
+            if (score >= spc2Cost) {
+                score -= spc2Cost
+                scorePerClick += spc2Amount
+                spc2Cost = Math.round(spc2Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spcUpgrade2Cost').innerHTML = spc2Cost
+                document.getElementById('spcInfoText').innerHTML = scorePerClick
+            }
+        }
+
+        function upgradeScorePerSecond2() {
+            if (score >= sps2Cost) {
+                score -= sps2Cost
+                scorePerSecond += sps2Amount
+                sps2Cost = Math.round(sps2Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spsUpgrade2Cost').innerHTML = sps2Cost
+                document.getElementById('spsInfoText').innerHTML = scorePerSecond
+            }
+        }
+
+        function upgradeScorePerClick3() {
+            if (score >= spc3Cost) {
+                score -= spc3Cost
+                scorePerClick += spc3Amount
+                spc3Cost = Math.round(spc3Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spcUpgrade3Cost').innerHTML = spc3Cost
+                document.getElementById('spcInfoText').innerHTML = scorePerClick
+            }
+        }
+
+        function upgradeScorePerSecond3() {
+            if (score >= sps3Cost) {
+                score -= sps3Cost
+                scorePerSecond += sps3Amount
+                sps3Cost = Math.round(sps3Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spsUpgrade3Cost').innerHTML = sps3Cost
+                document.getElementById('spsInfoText').innerHTML = scorePerSecond
+            }
+        }
+
+        function upgradeScorePerClick4() {
+            if (score >= spc4Cost) {
+                score -= spc4Cost
+                scorePerClick += spc4Amount
+                spc4Cost = Math.round(spc4Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spcUpgrade4Cost').innerHTML = spc4Cost
+                document.getElementById('spcInfoText').innerHTML = scorePerClick
+            }
+        }
+
+        function upgradeScorePerSecond4() {
+            if (score >= sps4Cost) {
+                score -= sps4Cost
+                scorePerSecond += sps4Amount
+                sps4Cost = Math.round(sps4Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spsUpgrade4Cost').innerHTML = sps4Cost
+                document.getElementById('spsInfoText').innerHTML = scorePerSecond
+            }
+        }
+
+        function upgradeScorePerClick5() {
+            if (score >= spc5Cost) {
+                score -= spc5Cost
+                scorePerClick += spc5Amount
+                spc5Cost = Math.round(spc5Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spcUpgrade5Cost').innerHTML = spc5Cost
+                document.getElementById('spcInfoText').innerHTML = scorePerClick
+            }
+        }
+
+        function upgradeScorePerSecond5() {
+            if (score >= sps5Cost) {
+                score -= sps5Cost
+                scorePerSecond += sps5Amount
+                sps5Cost = Math.round(sps5Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spsUpgrade5Cost').innerHTML = sps5Cost
+                document.getElementById('spsInfoText').innerHTML = scorePerSecond
+            }
+        }
+
+        function upgradeScorePerClick6() {
+            if (score >= spc6Cost) {
+                score -= spc6Cost
+                scorePerClick += spc6Amount
+                spc6Cost = Math.round(spc6Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spcUpgrade6Cost').innerHTML = spc6Cost
+                document.getElementById('spcInfoText').innerHTML = scorePerClick
+            }
+        }
+
+        function upgradeScorePerSecond6() {
+            if (score >= sps6Cost) {
+                score -= sps6Cost
+                scorePerSecond += sps6Amount
+                sps6Cost = Math.round(sps6Cost * 1.5)
+                document.getElementById('score').innerHTML = Math.floor(score)
+                document.getElementById('spsUpgrade6Cost').innerHTML = sps6Cost
+                document.getElementById('spsInfoText').innerHTML = scorePerSecond
+            }
+        }
+
+        function checkForAchievements() {
+            if (clickCount >= 100) {
+                amateurClickerCompletion = true
+                document.getElementById('amateurClickerCompletion').innerHTML = "Completed"
+            }
+            if (clickCount >= 1000) {
+                proClickerCompletion = true
+                document.getElementById('proClickerCompletion').innerHTML = "Completed"
+            }
+            if (clickCount >= 10000) {
+                masterClickerCompletion = true
+                document.getElementById('masterClickerCompletion').innerHTML = "Completed"
+            }
+            if (scorePerSecond >= 1000) {
+                smallClickFactoryCompletion = true
+                document.getElementById('smallClickFactoryCompletion').innerHTML = "Completed"
+            }
+            if (scorePerSecond >= 10000) {
+                largeClickFactoryCompletion = true
+                document.getElementById('largeClickFactoryCompletion').innerHTML = "Completed"
+            }
+            if (scorePerSecond >= 100000) {
+                hugeClickFactoryCompletion = true
+                document.getElementById('hugeClickFactoryCompletion').innerHTML = "Completed"
+            }
+            if (clickCount <= 30 && score >= 1000000) {
+                patienceIsKeyCompletion = true
+                document.getElementById('patienceIsKeyCompletion').innerHTML = "Completed"
+            }
+            if (score >= 999999999999) {
+                patienceIsKeyCompletion = true
+                document.getElementById('scoreHackerCompletion').innerHTML = "Completed"
+            }
+        }
+
+        function spsUpdate() {
+            checkForAchievements()
+            score += scorePerSecond/200
+            document.getElementById('score').innerHTML = Math.floor(score)
+        }
+
+        function showAchievements() {
+            achievementScreenActive = !achievementScreenActive
+            if (achievementScreenActive) {
+                document.getElementById('achievementsMenu').style.display = 'block'
+            }
+            else {
+                document.getElementById('achievementsMenu').style.display = 'none'
+            }
+        }
+
+        setInterval(spsUpdate, 5)
+    </script>
+</head>
+<body onload="loadStartingInfo()">
+    <button id="mainButton" onclick="addToScore()">Click Here!</button>
+    <p id="scoreText">Score: <span id="score">0</span></p>
+    <div class="infoBox">
+        <p>Score Per Click: <span id="spcInfoText">1</span></p>
+        <p>Score Per Second: <span id="spsInfoText">0</span></p>
+    </div>
+
+    <button id="achievementsButton" onclick="showAchievements()">Achievements</button>
+
+    <div id="achievementsMenu">
+        <div class="achievements" id="amateurClickerAchievement"><h1>Amateur Clicker</h1><p>Click 100 Times</p><p><span id="amateurClickerCompletion"></span></p></div>
+        <div class="achievements" id="proClickerAchievement"><h1>Pro Clicker</h1><p>Click 1000 Times</p><p><span id="proClickerCompletion"></span></p></div>
+        <div class="achievements" id="masterClickerAchievement"><h1>Master Clicker</h1><p>Click 10000 Times</p><p><span id="masterClickerCompletion"></span></p></div>
+        <div class="achievements" id="smallClickFactoryAchievement"><h1>Small Click Factory</h1><p>Get 1000 Clicks Per Second</p><p><span id="smallClickFactoryCompletion"></span></p></div>
+        <div class="achievements" id="largeClickFactoryAchievement"><h1>Large Click Factory</h1><p>Get 10000 Clicks Per Second</p><p><span id="largeClickFactoryCompletion"></span></p></div>
+        <div class="achievements" id="hugeClickFactoryAchievement"><h1>Huge Click Factory</h1><p>Get 100000 Clicks Per Second</p><p><span id="hugeClickFactoryCompletion"></span></p></div>
+        <div class="achievements" id="patienceIsKeyAchievement"><h1>Patience Is Key</h1><p>Get to 1000000 score with only 30 clicks</p><p><span id="patienceIsKeyCompletion"></span></p></div>
+        <div class="achievements" id="hugeClickFactoryAchievement"><h1>Score Hacker</h1><p>Get 999999999999 Score</p><p><span id="scoreHackerCompletion"></span></p></div>
+    </div>
+
+    <div id="upgradeBox">
+        <button class="upgrades" id="spcUpgrade1" onclick="upgradeScorePerClick1()">Upgrade Score Per Click by <span id="spcUpgrade1Amount"></span> | Cost: <span id="spcUpgrade1Cost"></span></button>
+        <button class="upgrades" id="spsUpgrade1" onclick="upgradeScorePerSecond1()">Upgrade Score Per Second by <span id="spsUpgrade1Amount"></span> | Cost: <span id="spsUpgrade1Cost"></span></button>
+        <button class="upgrades" id="spcUpgrade2" onclick="upgradeScorePerClick2()">Upgrade Score Per Click by <span id="spcUpgrade2Amount"></span> | Cost: <span id="spcUpgrade2Cost"></span></button>
+        <button class="upgrades" id="spsUpgrade2" onclick="upgradeScorePerSecond2()">Upgrade Score Per Second by <span id="spsUpgrade2Amount"></span> | Cost: <span id="spsUpgrade2Cost"></span></button>
+        <button class="upgrades" id="spcUpgrade3" onclick="upgradeScorePerClick3()">Upgrade Score Per Click by <span id="spcUpgrade3Amount"></span> | Cost: <span id="spcUpgrade3Cost"></span></button>
+        <button class="upgrades" id="spsUpgrade3" onclick="upgradeScorePerSecond3()">Upgrade Score Per Second by <span id="spsUpgrade3Amount"></span> | Cost: <span id="spsUpgrade3Cost"></span></button>
+        <button class="upgrades" id="spcUpgrade4" onclick="upgradeScorePerClick4()">Upgrade Score Per Click by <span id="spcUpgrade4Amount"></span> | Cost: <span id="spcUpgrade4Cost"></span></button>
+        <button class="upgrades" id="spsUpgrade4" onclick="upgradeScorePerSecond4()">Upgrade Score Per Second by <span id="spsUpgrade4Amount"></span> | Cost: <span id="spsUpgrade4Cost"></span></button>
+        <button class="upgrades" id="spcUpgrade5" onclick="upgradeScorePerClick5()">Upgrade Score Per Click by <span id="spcUpgrade5Amount"></span> | Cost: <span id="spcUpgrade5Cost"></span></button>
+        <button class="upgrades" id="spsUpgrade5" onclick="upgradeScorePerSecond5()">Upgrade Score Per Second by <span id="spsUpgrade5Amount"></span> | Cost: <span id="spsUpgrade5Cost"></span></button>
+        <button class="upgrades" id="spcUpgrade6" onclick="upgradeScorePerClick6()">Upgrade Score Per Click by <span id="spcUpgrade6Amount"></span> | Cost: <span id="spcUpgrade6Cost"></span></button>
+        <button class="upgrades" id="spsUpgrade6" onclick="upgradeScorePerSecond6()">Upgrade Score Per Second by <span id="spsUpgrade6Amount"></span> | Cost: <span id="spsUpgrade6Cost"></span></button>
+    </div>
+</body>
+</html>

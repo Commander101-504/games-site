@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Custom Game</title>
+        <style>
+            body {
+                background-color: #1f1f1f;
+            }
+            #frame {
+                position: absolute;
+                height: 0;
+                width: 0;
+                top: 0;
+                left: 0;
+                border: none;
+            }
+            h1 {
+                color: white;
+                text-align: center;
+                font-size: 5rem;
+            }
+            #label {
+                color: white;
+                text-align: center;
+                font-size: 3rem;
+            }
+            #disclaimer {
+                color: white;
+                text-align: center;
+                font-size: 1rem;
+            }
+            input {
+                position: absolute;
+                top: 40vh;
+                left: 20vw;
+                width: 60vw;
+                height: 10vh;
+                border: 1px solid white;
+                border-radius: 10px;
+                background-color: #3f3f3f;
+                font-size: 35px;
+                color: white;
+                text-align: center;
+                font-weight: bold;
+            }
+            #submit {
+                position: absolute;
+                top: 55vh;
+                left: 40vw;
+                width: 20vw;
+                height: 10vh;
+                border: 1px solid white;
+                border-radius: 10px;
+                background-color: #3f3f3f;
+                font-size: 35px;
+                color: white;
+                text-align: center;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Custom Game</h1>
+        <p id="label">Input game URL</p>
+        <input id="input" type="text">
+        <button id="submit" onclick="submit();">Open Game</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p id="disclaimer">*Not all games will work, many will show an error message. If an error is shown, reload the page and try a new link</p>
+
+        <iframe src="https://dashmetry.com/" id="frame"></iframe>
+        
+        <script>
+            function submit() {
+                let url = document.getElementById("input").value;
+                if(url.indexOf('https://') == -1 && url.indexOf('http://') == -1) {
+                    url = "https://" + url;
+                }
+                
+                document.getElementById("frame").style.height = "100vh";
+                document.getElementById("frame").style.width = "100vw";
+                document.getElementById("frame").src = url;
+            }
+        </script>
+    </body>
+</html>
