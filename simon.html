@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simon</title>
+        <style>
+            body {
+                overflow: hidden;
+                background-color: #1f1f1f;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .base {
+                background-color: black;
+                top: 0px;
+                left: 0px;
+                width: 500px;
+                height: 500px;
+                border-radius: 50%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+            
+            .colorButton {
+                border-radius: 10px;
+                width: 200px;
+                height: 200px;
+                border-top-left-radius: 200px;
+                position: absolute;
+            }
+
+            #top {
+                transform: rotate(45deg);
+                background-color: #00bb00;
+                top: -10px;
+                left: 150px;
+            }
+
+            #right {
+                transform: rotate(135deg);
+                background-color: #bb0000;
+                top: 150px;
+                right: -10px;
+            }
+
+            #left {
+                transform: rotate(315deg);
+                background-color: #bbbb00;
+                bottom: 150px;
+                left: -10px;
+            }
+
+            #bottom {
+                transform: rotate(225deg);
+                background-color: #0000bb;
+                bottom: -10px;
+                left: 150px;
+            }
+            
+            #center {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background-color: black;
+                z-index: 6;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            #simonTitle {
+                color: white;
+                text-align: center;
+                font-family: "impact";
+                font-weight: bolder;
+            }
+
+            #start {
+                width: 100px;
+                height: 50px;
+                border-radius: 25px;
+                background-color: #0f0f0f;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, 10%);
+                transform: translate(-50%, 10%);
+                color: white;
+                border: 0px;
+                font-size: 1.5em;
+                font-family: "impact";
+                font-weight: bolder;
+            }
+
+            #loseScreen {
+                position: absolute;
+                left: 100%;
+                top: 0;
+                background-color: #ff0000;
+                width: 100vw;
+                height: 100vh;
+                transition: all 0.5s;
+            }
+
+            #scoreText {
+                position: absolute;
+                width: 100vw;
+                left: 0;
+                top: 150px;
+                color: black;
+                text-align: center;
+                font-family: "impact";
+                font-weight: bolder;
+                font-size: 5rem;
+            }
+
+            #highScoreText {
+                position: absolute;
+                width: 100vw;
+                left: 0;
+                top: 250px;
+                color: black;
+                text-align: center;
+                font-family: "impact";
+                font-weight: bolder;
+                font-size: 5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="base">
+            <div class="colorButton" id="top"></div>
+            <div class="colorButton" id="right"></div>
+            <div class="colorButton" id="bottom"></div>
+            <div class="colorButton" id="left"></div>
+            <div id="center">
+                <br>
+                <h1 id="simonTitle">SIMON</h1>
+                <button onclick="gameLoop();" id="start">Start</button>
+            </div>
+        </div>
+        <div id="loseScreen">
+            <h1 id="scoreText">Score: 0</h1>
+            <h1 id="highScoreText">High Score: 0</h1>
+        </div>
+        
+        <script>
+            const pushDuration = 250;
+            const displayDuration = 500;
+
+            var allowedToPress = true;
+            var buttonsOrder = [];
+            var buttonsPressed = [];
+
+            buttonsOrder.push(Math.ceil(Math.random() * 4));
+            
+            document.onkeydown = checkKey;
+
+            function sleep(ms) {
+              return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            function lose() {
+                currentHighScore = localStorage.getItem('highScore');
+                if (currentHighScore === null || (buttonsOrder.length - 1) > currentHighScore) {
+                    localStorage.setItem('highScore', (buttonsOrder.length - 1));
+                    currentHighScore = buttonsOrder.length - 1;
+                }
+
+                document.getElementById('scoreText').innerHTML = 'Score: ' + (buttonsOrder.length - 1);
+                document.getElementById('highScoreText').innerHTML = 'High Score: ' + currentHighScore;
+                
+                document.getElementById('loseScreen').style.left = 0;          
+                
+                setTimeout(() => {
+                    document.getElementById('start').innerHTML = 'Start';
+
+                    buttonsOrder.length = 0;
+                    buttonsOrder.push(Math.ceil(Math.random() * 4));
+
+                }, 500);
+                setTimeout(() => {
+                    document.getElementById('loseScreen').style.left = '100%';
+                }, 5000);
+            }
+            
+            function pressButton(dir, color, length) {
+                document.getElementById(dir).style.boxShadow = "0 0 10px 5px " + color;
+                document.getElementById(dir).style.backgroundColor = color;
+                setTimeout(() => {
+                    document.getElementById(dir).style.boxShadow = 'none';
+                    if (color == '#ff0000') {
+                        document.getElementById(dir).style.backgroundColor = '#bb0000';
+                    }
+                    else if (color == '#ffff00') {
+                        document.getElementById(dir).style.backgroundColor = '#bbbb00';
+                    }
+                    else if (color == '#00ff00') {
+                        document.getElementById(dir).style.backgroundColor = '#00bb00';
+                    }
+                    else if (color == '#0000ff') {
+                        document.getElementById(dir).style.backgroundColor = '#0000bb';
+                    }
+                }, length);
+            }
+
+            function checkKey(e) {
+                if (allowedToPress) {
+            
+                    e = e || window.event;
+                
+                    if (e.keyCode == 38) {
+                        pressButton('top', '#00ff00', pushDuration);
+                        buttonsPressed.push(1);
+                        checkListsMiddle();
+                    }
+                    else if (e.keyCode == 40) {
+                        pressButton('bottom', '#0000ff', pushDuration);
+                        buttonsPressed.push(3);
+                        checkListsMiddle();
+                    }
+                    else if (e.keyCode == 37) {
+                        pressButton('left', '#ffff00', pushDuration);
+                        buttonsPressed.push(4);
+                        checkListsMiddle();
+                    }
+                    else if (e.keyCode == 39) {
+                        pressButton('right', '#ff0000', pushDuration);
+                        buttonsPressed.push(2);
+                        checkListsMiddle();
+                    }
+                }
+            
+            }
+
+            function checkListsMiddle() {
+                i = buttonsPressed.length - 1;
+                
+                if (buttonsPressed[i] != buttonsOrder[i]) {
+                    lose();
+                }
+            }
+
+            function areListsEqual(list1, list2) {
+                if (list1.length !== list2.length) return false;
+                return list1.every((element, index) => element === list2[index]);
+            }
+            
+            async function waitUntilListsEqual(buttonsOrder, buttonsPressed, checkInterval = 1000) {
+                return new Promise((resolve) => {
+                    const checkLists = () => {
+                        if (buttonsPressed.length <= buttonsOrder.length) {
+                            if (areListsEqual(buttonsOrder, buttonsPressed)) {
+                                resolve();
+                            } else {
+                                setTimeout(checkLists, checkInterval);
+                            }
+                        }
+                        else {
+                            lose();
+                        }
+                    };
+                    checkLists();
+                });
+            }
+
+            async function gameLoop() {
+                document.getElementById('start').innerHTML = 'Round ' + buttonsOrder.length;
+                
+                await sleep(250);
+                
+                buttonsPressed = [];
+                        
+                allowedToPress = false;
+                
+                for(let i = 0; i < buttonsOrder.length; i++) {
+                    if (buttonsOrder[i] == 1) {
+                        direction = 'top';
+                        color = '#00ff00';
+                    }
+                    else if (buttonsOrder[i] == 2) {
+                        direction = 'right';
+                        color = '#ff0000';
+                    }
+                    else if (buttonsOrder[i] == 3) {
+                        direction = 'bottom';
+                        color = '#0000ff';
+                    }
+                    else if (buttonsOrder[i] == 4) {
+                        direction = 'left';
+                        color = '#ffff00';
+                    }
+                    
+                    pressButton(direction, color, displayDuration);
+
+                    await sleep(750);
+                }
+
+                allowedToPress = true;
+
+                waitUntilListsEqual(buttonsOrder, buttonsPressed).then(() => {
+                    buttonsOrder.push(Math.ceil(Math.random() * 4));
+                    gameLoop();
+                });
+            }
+        </script>
+    </body>
+</html>

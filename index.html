@@ -1,0 +1,534 @@
+<DOCTYPE html>
+<html>
+<head>
+    <title>Games</title>
+    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+    <style>
+        body {
+            background-color: #1f1f1f;
+        }
+        button {
+            box-shadow: 10px 10px 5px black;
+            font-size: 25px;
+            font-family: 'Lexend';
+            border: 10px white;
+            width: 17vw;
+            aspect-ratio: 1;
+            color: white;
+            overflow: hidden;
+            border-radius: 30px;
+            transition: all 0.5s ease;
+            transform: scale(1);
+        }
+        button:hover {
+            box-shadow: 5px 5px 5px black;
+            transform: scale(1.1);
+        }
+        h1 {
+            letter-spacing: 5px;
+            color: white;
+            font-size: 40px;
+            font-family: 'Lexend';
+            text-align: center;
+        }
+        .norm {
+            background-color: #2f2f2f;
+        }
+        .pop {
+            background-color: #3f3f3f;
+        }
+        .supop {
+            background-color: #4f4f4f;
+        }
+        .mustplay {
+            background-color: #5f5f5f;
+        }
+        .custom {
+            background-color: #4f4f4f;
+        }
+        .norm:hover {
+            background-color: #3f3f3f;
+        }
+        .pop:hover {
+            background-color: #4f4f4f;
+        }
+        .supop:hover {
+            background-color: #5f5f5f;
+        }
+        .mustplay:hover {
+            background-color: #6f6f6f;
+        }
+        .custom:hover {
+            background-color: #5f5f5f;
+        }
+        .top1 {
+            background-image: linear-gradient(
+	            to top left,
+	            #462523 0,
+       	        #cb9b51 33%, 
+	            #f6e27a 66%,
+	            #f6f2c0 100%
+	        );
+        }
+        .top1:hover {
+            background-image: linear-gradient(
+	            to top left,
+	            #573634 0,
+       	        #dcac62 33%, 
+	            #f7f38b 66%,
+	            #cb9b51 100%
+	        );
+        }
+        .container {
+            padding: 10px;
+            gap: 10px;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            justify-content: center;
+        }
+        .search {
+            height: 100px;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="search">
+        <h1>Press CTRL+F or CTRL+G to search</h1>
+    </div>
+    <div class="container">
+        <button class="norm" onclick='window.location.href="./2playercrazyracer.html"'>2 Player Crazy Racer</button>
+        <br>
+        <button class="mustplay" onclick='window.location.href="./12minibattles.html"'>#3 - 12 Minibattles</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./2048.html"'>2048</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./airplaneracer.html"'>Airplane Racer</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./appel.html"'>Appel</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./archerhero.html"'>Archer Hero</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./asteroids.html"'>Asteroids</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./backgammon.html"'>Backgammon</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./badtimesimulator.html"'>Bad Time Simulator</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./balatro.html"'>Balatro</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./basketballfrvr.html"'>Basketball FRVR</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./basketrandom.html"'>Basket Random</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./battleroyalesimulator.html"'>Battle Royale Simulator</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./breaksout.html"'>Breaksout</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./brutal.html"'>Brutal</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./capybaraclicker.html"'>Capybara Clicker</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./checkers.html"'>Checkers</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./chess.html"'>Chess</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./clicker.html"'>Clicker</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./cliffhanger.html"'>Cliffhanger</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./clusterrush.html"'>Cluster Rush</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./colordle.html"'>Colordle</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./colourdle.html"'>Colourdle</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./conwaygameoflife.html"'>Conway's Game of Life</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./cookieclicker/index.html"'>Cookie Clicker</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./copter.html"'>Copter</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./coreballgame.html"'>Coreball Game</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./cowbay.html"'>Cow Bay</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./crazycars.html"'>Crazy Cars</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./crossword.html"'>Crossword</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./crossyroad.html"'>Crossy Road</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./cubes.html"'>Cubes</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./cuttherope.html"'>Cut The Rope</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./dancingline.html"'>Dancing Line</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./dashmetry.html"'>Dashmetry</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./deadshot.html"'>Deadshot</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./deerhunter.html"'>Deer Hunter</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./defly.html"'>Defly</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./digdig.html"'>Dig Dig</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./dinobros.html"'>Dino Bros</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./dinogame.html"'>Dino Game</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./dockyardtankparking.html"'>Dockyard Tank Parking</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./dogeminer2.html"'>Doge Miner 2</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./donkeykongcountry.html"'>Donkey Kong Country</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./dontfall.html"'>Don't Fall</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./doodlebaseball.html"'>Doodle Baseball</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./doodlecricket.html"'>Doodle Cricket</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./doodlejump.html"'>Doodle Jump</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./doodlepacman.html"'>Doodle Pacman</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./doom1.html"'>Doom 1</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./dordle.html"'>Dordle</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./drawthebridge.html"'>Draw the Bridge</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./drifthunters.html"'>Drift Hunters</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./driftrider.html"'>Drift Rider</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./drunkenboxing2.html"'>Drunken Boxing 2</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./ducklifeadventure.html"'>Duck Life Adventure</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./eightqueens.html"'>Eight Queens</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./emojidecks.html"'>Emoji Decks</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./emojikitchen.html"'>Emoji Kitchen</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./escaperoad.html"'>Escape Road</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./escaperoad2.html"'>Escape Road 2</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./euchre.html"'>Euchre</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./eugeneslife.html"'>Eugene's Life</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./evowars.html"'>Evo Wars</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./evoworld.html"'>Evo World</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./farmbattles.html"'>Farm Battles</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./flaggle.html"'>Flaggle</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./flagle.html"'>Flagle</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./flappybird.html"'>Flappy Bird</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./florr.html"'>Florr</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./fnaf.html"'>FNAF</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./fourcolors.html"'>Four Colors</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./fruitninja.html"'>Fruit Ninja</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./galaga.html"'>Galaga</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./garticphone.html"'>Gartic Phone</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./geometrydashlite.html"'>Geomtery Dash Lite</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./geometryrash.html"'>Geometry Rash</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./gettingoverit.html"'>Getting Over It</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./globle.html"'>Globle</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./goingballs.html"'>Going Balls</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./gooberdash.html"'>Goober Dash</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./googleminesweeper.html"'>Google Minesweeper</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./googlesnake.html"'>Google Snake</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./gpop.html"'>gpop</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./happywheels.html"'>Happy Wheels</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./headbasketball.html"'>Head Basketball</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./headsoccer.html"'>Head Soccer</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./hextris.html"'>Hextris</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./houseofhazards.html"'>House of Hazards</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./humanbenchmark.html"'>Human Benchmark</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./idledevstartup.html"'>Idle Dev Startup</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./jeepracing.html"'>Jeep Racing</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./jumpingshell.html"'>Jumping Shell</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./justdontdie.html"'>Just Don't Die</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./justhitthebutton.html"'>Just Hit the Button</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./kahoot.html"'>Kahoot</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./kickthedummy.html"'>Kick The Dummy</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./kilordle.html"'>Kilordle</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./kirbynightmareindreamland.html"'>Kirby: Nightmare in Dreamland</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./kiwiclicker.html"'>Kiwi Clicker</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./knockballs.html"'>Knock Balls</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./kour.html"'>Kour</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./languageguessr.html"'>LanguageGuessr</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./legendarysniper.html"'>Legendary Sniper</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./legendofzeldalinktothepast.html"'>Legend of Zelda: A Link to the Past</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./leveldevil.html"'>Level Devil</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./littlealchemy2.html"'>Little Alchemy 2</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./littlebigsnake.html"'>Little Big Snake</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./lordz.html"'>Lordz</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./mahjong.html"'>Mahjong</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./mariokartsupercircuit.html"'>Mario Kart: Super Circuit</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./mariopinball.html"'>Mario Pinball</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./maskspecforces.html"'>Masked Special Forces</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./matchthecolors.html"'>Match the Colors</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./mechbros.html"'>Mechbros</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./miniblox.html"'>Miniblox</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./missilegame.html"'>Missile Game</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./mobcity.html"'>Mob City</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./monkeymart.html"'>Monkey Mart</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./moomoo.html"'>Moomoo</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./mototrials.html"'>Moto Trials</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./nandgame.html"'>Nand Game</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./netlifylockpicking.html"'>Netlify Lockpicking Simulator</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./nsshaft.html"'>NS-Shaft</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./papaspizzeria.html"'>Papa's Pizzeria</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./paper.html"'>Paper</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./paperminecraft.html"'>Paper Minecraft</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./particleclicker.html"'>Particle Clicker</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./perfecthotel.html"'>Perfect Hotel</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./pinball.html"'>Pinball</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./pizzaclicker.html"'>Pizza Clicker</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./planetclickeridle.html"'>Planet Clicker Idle</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./pokemonshowdown.html"'>Pokemon Showdown</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./poker.html"'>Poker</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./pongs.html"'>Pongs</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./pool.html"'>Pool</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./powerline.html"'>Powerline</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./pvz.html"'>Plants Vs. Zombies</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./quizeen.html"'>Quizeen</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./quizizz.html"'>Quizizz</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./quizlet.html"'>Quizlet</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./ragdollhit.html"'>Ragdoll Hit</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./raytracedminecraft.html"'>Raytraced Minecraft</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./realflightsim.html"'>Real Flight Simulator</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./redstonesimulator.html"'>Redstone Simulator</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./rocketbotroyale.html"'>Rocket Bot Royale</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./roulette.html"'>Roulette</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./senpa.html"'>Senpa</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./shapereaction.html"'>Shape Reaction</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./shapezmodz.html"'>Shapez Modz</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./shootoutreloaded.html"'>Shootout: Reloaded</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./simon.html"'>Simon</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./skibiditoilet.html"'>Skibidi Toilet</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./skifree.html"'>Ski Free</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./skribbl.html"'>Skribbl</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./sledgerider.html"'>Sledge Rider</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./slicemaster3d.html"'>Slice Master 3D</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./slope.html"'>Slope</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./slots.html"'>Slots</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./slowroads.html"'>Slow Roads</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./snakisms.html"'>SNAKISMS</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./sniperelite.html"'>Sniper Elite</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./snowball.html"'>Snowball</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./snowroad.html"'>Snow Road</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./soccerrandom.html"'>Soccer Random</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./solarsmash.html"'>Solar Smash</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./solitaire.html"'>Solitaire</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./songtrivia2.html"'>Song Trivia 2</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./spaceiskey.html"'>Space Is Key</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./splix.html"'>Splix</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./sporcle.html"'>Sporcle</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./stackfireball.html"'>Stack Fire Ball</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./stickmanclimb2.html"'>Stickman Climb 2</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./stickmandestruction.html"'>Stickman Destruction</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./stickmandragonfight.html"'>Stickman Dragon Fight</button>
+        <br>
+        <button class="supop" onclick='window.location.href="./stickmanhook.html"'>Stickman Hook</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./stickwithit.html"'>Stick With It</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./streetfighter.html"'>Street Fighter</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./stuntparadise.html"'>Stunt Paradise</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./subwayidle3d.html"'>Subway Idle 3D</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./subwaysurfers.html"'>Subway Surfers</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./sudoku.html"'>Sudoku</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./suikagame.html"'>Suika Game</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./supermonkeyballjr.html"'>Super Monkey Ball Jr.</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./superpickleballadventure.html"'>Super Pickleball Adventure</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./tallmanrun.html"'>Tallman Run</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./taproad.html"'>Tap Road</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./taptapshots.html"'>Tap Tap Shots</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./taptaptap.html"'>Tap Tap Tap</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./templerunner2.html"'>Temple Runner 2</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./territorial.html"'>Territorial</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./tetris.html"'>Tetris</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./thehenrystickmincollection.html"'>The Henry Stickmin Collection</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./thewikigame.html"'>The Wiki Game</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./tictactoe.html"'>Tic Tac Toe</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./tinyfishing.html"'>Tiny Fishing</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./toonz.html"'>Toonz</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./tower.html"'>Tower</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./tunnelrush.html"'>Tunnel Rush</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./typeracer.html"'>Type Racer</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./ultrakillprelude.html"'>ULTRAKILL: Prelude</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./underrun.html"'>UNDERRUN</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./unfairundyne.html"'>Unfair Undyne</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./urbansniper.html"'>Urban Sniper</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./venge.html"'>Venge</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./weskate.html"'>We Skate</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./wings.html"'>Wings</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./wordleunlimited.html"'>Wordle Unlimited</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./wordsearch.html"'>Word Search</button>
+        <br>
+        <button class="norm" onclick='window.location.href="./worldguessr.html"'>WorldGuessr</button>
+        <br>
+        <button class="pop" onclick='window.location.href="./wormate.html"'>Wormate</button>
+        <br>
+        <button class="top1" onclick='window.location.href="./zombsroyale.html"'>#1 - Zombs Royale</button>
+        <br>
+        <button class="custom" onclick='window.location.href="./custom.html"'>Custom Game</button>
+    </div>
+</body>

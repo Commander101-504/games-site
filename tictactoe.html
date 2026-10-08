@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"> -->
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+            background-color: #1f1f1f;
+        }
+        p {
+            color: white;
+            font-family: 'Lexend';
+        }
+        table, td {
+            cursor: pointer;
+            border:1px solid white;
+            color:#1f1f1f;
+            font-size: 300%;
+            text-align: center;
+            font-family: 'Lexend';
+        }
+        h1, h2 {
+            color:white;
+            text-align: center;
+            font-family: 'Lexend';
+        }
+        table {
+            margin-right: auto;
+            margin-left: auto;
+        }
+        button {
+            cursor: pointer;
+            text-align: center;
+            width: 20%;
+            font-size: x-large;
+            border-color: white;
+            background-color: #1f1f1f;
+            color: white;
+            font-family: 'Lexend';
+        }
+        .button {
+            text-align: center;
+        }
+    </style>
+    <script>
+        let player = "X";
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        function move(x) {
+            if(document.getElementById(x).innerHTML === "N") {
+                if(document.getElementById("turn").innerHTML != "X wins!" && document.getElementById("turn").innerHTML != "O wins!") {
+                    document.getElementById(x).innerHTML = player;
+                    document.getElementById(x).style.color = "white";
+                    if(player === "X") {
+                        player = "O"
+            }
+                    else {
+                        player = "X"
+            }
+                document.getElementById("turn").innerHTML = player + "'s turn!";
+                sleep(10).then(() => {WinDetect()});
+        }}}
+        
+        function WinDetect() {
+            if (document.getElementById(1).innerHTML === "X" && document.getElementById(5).innerHTML === "X" && document.getElementById(9).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(1).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(9).style.color = "lime";
+        }
+            if (document.getElementById(7).innerHTML === "X" && document.getElementById(5).innerHTML === "X" && document.getElementById(3).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(7).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(3).style.color = "lime";
+        }
+            if (document.getElementById(1).innerHTML === "X" && document.getElementById(2).innerHTML === "X" && document.getElementById(3).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(1).style.color = "lime";
+                document.getElementById(2).style.color = "lime";
+                document.getElementById(3).style.color = "lime";
+        }
+            if (document.getElementById(4).innerHTML === "X" && document.getElementById(5).innerHTML === "X" && document.getElementById(6).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(4).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(6).style.color = "lime";
+        }
+            if (document.getElementById(7).innerHTML === "X" && document.getElementById(8).innerHTML === "X" && document.getElementById(9).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(7).style.color = "lime";
+                document.getElementById(8).style.color = "lime";
+                document.getElementById(9).style.color = "lime";
+        }
+            if (document.getElementById(1).innerHTML === "X" && document.getElementById(4).innerHTML === "X" && document.getElementById(7).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(1).style.color = "lime";
+                document.getElementById(4).style.color = "lime";
+                document.getElementById(7).style.color = "lime";
+        }
+            if (document.getElementById(2).innerHTML === "X" && document.getElementById(5).innerHTML === "X" && document.getElementById(8).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(2).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(8).style.color = "lime";
+        }
+            if (document.getElementById(3).innerHTML === "X" && document.getElementById(6).innerHTML === "X" && document.getElementById(9).innerHTML === "X") {
+                document.getElementById("turn").innerHTML = "X wins!";
+                document.getElementById(3).style.color = "lime";
+                document.getElementById(6).style.color = "lime";
+                document.getElementById(9).style.color = "lime";
+        }
+            if (document.getElementById(1).innerHTML === "O" && document.getElementById(5).innerHTML === "O" && document.getElementById(9).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(1).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(9).style.color = "lime";
+        }
+            if (document.getElementById(7).innerHTML === "O" && document.getElementById(5).innerHTML === "O" && document.getElementById(3).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(7).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(3).style.color = "lime";
+        }
+            if (document.getElementById(1).innerHTML === "O" && document.getElementById(2).innerHTML === "O" && document.getElementById(3).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(1).style.color = "lime";
+                document.getElementById(2).style.color = "lime";
+                document.getElementById(3).style.color = "lime";
+        }
+            if (document.getElementById(4).innerHTML === "O" && document.getElementById(5).innerHTML === "O" && document.getElementById(6).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(4).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(6).style.color = "lime";
+        }
+        if (document.getElementById(7).innerHTML === "O" && document.getElementById(8).innerHTML === "O" && document.getElementById(9).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(7).style.color = "lime";
+                document.getElementById(8).style.color = "lime";
+                document.getElementById(9).style.color = "lime";
+        }
+            if (document.getElementById(1).innerHTML === "O" && document.getElementById(4).innerHTML === "O" && document.getElementById(7).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(1).style.color = "lime";
+                document.getElementById(4).style.color = "lime";
+                document.getElementById(7).style.color = "lime";
+        }
+            if (document.getElementById(2).innerHTML === "O" && document.getElementById(5).innerHTML === "O" && document.getElementById(8).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(2).style.color = "lime";
+                document.getElementById(5).style.color = "lime";
+                document.getElementById(8).style.color = "lime";
+        }
+            if (document.getElementById(3).innerHTML === "O" && document.getElementById(6).innerHTML === "O" && document.getElementById(9).innerHTML === "O") {
+                document.getElementById("turn").innerHTML = "O wins!";
+                document.getElementById(3).style.color = "lime";
+                document.getElementById(6).style.color = "lime";
+                document.getElementById(9).style.color = "lime";
+        }
+        }
+    </script>
+</head>
+<body>
+    <h1>Tic Tac Toe Board</h1>
+    <table style="width:42.5%">
+      <tr>
+        <td id="1" onclick="move(1)">N</td>
+        <td id="2" onclick="move(2)">N</td>
+        <td id="3" onclick="move(3)">N</td>
+      </tr>
+      <tr>
+        <td id="4" onclick="move(4)">N</td>
+        <td id="5" onclick="move(5)">N</td>
+        <td id="6" onclick="move(6)">N</td>
+      </tr>
+      <tr>
+        <td id="7" onclick="move(7)">N</td>
+        <td id="8" onclick="move(8)">N</td>
+        <td id="9" onclick="move(9)">N</td>
+      </tr>
+    </table>
+    <h2 id="turn">X goes first!</h2>
+    <div class="button"><button onclick="location.reload();">Click here to reset the board!</button></div>
+</body>
+</html>
